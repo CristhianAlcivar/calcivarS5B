@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="calcivarS5B.Views.Principal"
+             Title="Principal">
+    <VerticalStackLayout>
+        <Label 
+        Text="Semana 5: SQLITE"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+        <Entry x:Name="txtName"
+           Placeholder="Ingresa un nombre"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnAdd"
+                Text="Guardar Persona"
+                Clicked="btnAdd_Clicked"
+                Grid.Row="0"
+                Grid.Column="0"/>
+
+            <Label x:Name="lblStatus"
+               TextColor="Red"
+               Grid.Row="1"
+               Grid.Column="0"/>
+
+            <Button x:Name="btnMostrar"
+                Text="Mostrar Personas"
+                Clicked="btnMostrar_Clicked"
+                Grid.Row="2"
+                Grid.Column="0"/>
+
+            <CollectionView x:Name="listaPerson"
+                        Grid.Column="0"
+                        Grid.Row="3">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Id}" Grid.Column="0" Margin="5"/>
+
+                            <Label Text="{Binding Name}" Grid.Column="1" Margin="5"/>
+
+                            <StackLayout Orientation="Horizontal" Grid.Column="2" Margin="5">
+                                <Button Text="Editar"
+                                    Clicked="OnEditPersonClicked"
+                                    CommandParameter="{Binding Id}" 
+                                    Margin="5"
+                                    Padding="5"/>
+
+                                <Button Text="Eliminar"
+                                    Clicked="OnDeletePersonClicked"
+                                    CommandParameter="{Binding Id}"
+                                    TextColor="Red"
+                                    Margin="5"
+                                    Padding="5"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
